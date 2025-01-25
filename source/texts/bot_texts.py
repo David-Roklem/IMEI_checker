@@ -1,4 +1,4 @@
-TEXTS: dict[str, str] = {
+TEXTS_CMD: dict[str, str] = {
     "/start": "Со мной можно проверить IMEI Ваших устройств.",
     "/help": "Я бот для проверки IMEI устройств",
 }
