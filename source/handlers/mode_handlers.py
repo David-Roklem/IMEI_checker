@@ -20,7 +20,7 @@ async def handle_test_button(message: Message, state: FSMContext):
 
 @mode_router.message(StateFilter(UserInputStates.test_mode))
 async def handle_test_mode(message: Message, state: FSMContext):
-    """Обработка сообщения с полученным IMEI устройства"""
+    """Обработка сообщения с полученным IMEI устройства для тестовых данных"""
     msg_text = message.text
     res = await check_imei_input(msg_text, state, test_data=True)
     await message.answer(res)
@@ -28,7 +28,7 @@ async def handle_test_mode(message: Message, state: FSMContext):
 
 @mode_router.message(StateFilter(UserInputStates.prod_mode))
 async def handle_prod_mode(message: Message, state: FSMContext):
-    """Обработка сообщения с полученным IMEI устройства"""
+    """Обработка сообщения с полученным IMEI устройства для реальных данных"""
     msg_text = message.text
     state_data = await state.get_data()
     service_id = state_data.get("service_id")
@@ -46,6 +46,7 @@ async def handle_real_button(message: Message):
 
 @mode_router.callback_query(F.data.startswith('service_'))
 async def process_service_callback(callback: CallbackQuery, state: FSMContext):
+    """Обработка callback-события при нажатии на инлайн-клавиатуру"""
     service_id = int(get_service_id(callback))
     await callback.message.edit_text(text=TEXTS_ANSWERS["ask_for_imei"])
     await state.set_state(UserInputStates.prod_mode)
