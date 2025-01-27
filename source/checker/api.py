@@ -7,7 +7,7 @@ class IMEIChecker:
     def __init__(self) -> None:
         self.base_url = IMEI_CHECKER_BASE_URL
         self.headers = {
-            "Authorization": f"Bearer {config.token_api_sandbox}",
+            "Authorization": f"Bearer {config.token_api_live}",
             "Accept-Language": "en",
         }
         self.headers_sandbox = {
@@ -24,7 +24,7 @@ class IMEIChecker:
             }
         async with httpx.AsyncClient(timeout=CUSTOM_REQ_TIMEOUT) as client:
             res = await client.post(url=url, headers=self.headers, json=payload)
-        return res.json()
+        return res
 
     async def test_check_imei(self, device_imei: str):
         """Отправляет тестовый запрос на получение моковых данных.
