@@ -14,6 +14,7 @@ async def check_imei_input(
     """Обрабатывает IMEI отправленный юзером, валидируя его и отправляя запрос к чекеру IMEI
 
     :param msg_text: текст, полученный от юзера, содержащий IMEI.
+    :param state: объект состояния FSM.
     :param test_data: если True, то запрос в режиме тестовых данных.
     :param prod_data: если True, то запрос в режиме реальных данных.
     :param service_id: id сервиса в системе IMEI чекера.
