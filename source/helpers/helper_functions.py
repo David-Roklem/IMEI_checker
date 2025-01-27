@@ -19,11 +19,8 @@ async def check_imei_input(msg_text: str, state: FSMContext, test_data: bool = F
             res = await IMEIChecker().test_check_imei(msg_text)
         elif prod_data:
             res = await IMEIChecker().check_imei(msg_text, service_id)
-        if res.status_code == 201:
-            await state.clear()
-            return res.text
-        else:
-            return TEXTS_ANSWERS["no_data_from_imei_checker"]
+        await state.clear()
+        return res.text
     else:
         return TEXTS_ANSWERS["invalid_imei"]
 
