@@ -24,3 +24,5 @@ config: Config = load_config()
 IMEI_CHECKER_BASE_URL = "https://api.imeicheck.net/"
 
 CUSTOM_REQ_TIMEOUT = 20
+
+USERS_WHITELIST = []
