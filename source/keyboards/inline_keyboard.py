@@ -10,7 +10,7 @@ def create_inline_kb(width: int = 2) -> InlineKeyboardMarkup:
     for service in services_data:
         button = InlineKeyboardButton(
             text=f"{service['title']} - ${service['price']}",
-            callback_data=f"service_{service['id']}"
+            callback_data=f"service_{service['id']}",
         )
         buttons.append(button)
     kb_builder.row(*buttons, width=width)
